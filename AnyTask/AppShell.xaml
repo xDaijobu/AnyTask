@@ -37,12 +37,16 @@
             Title="Browse"
             ContentTemplate="{DataTemplate local:DummyPage}"
             Icon="icon_feed.png" />
+        <ShellContent
+            Title="Firestore"
+            ContentTemplate="{DataTemplate local:FirestoreView}"
+            Icon="icon_feed.png" />
     </TabBar>
     <!--
         If you would like to navigate to this content you can do so by calling
         await Shell.Current.GoToAsync("//LoginPage");
     -->
-    <TabBar>
+    <!--<TabBar>
         <ShellContent ContentTemplate="{DataTemplate local:DummyPage}" Route="LoginPage" />
-    </TabBar>
+    </TabBar>-->
 </Shell>

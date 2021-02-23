@@ -6,6 +6,5 @@
     <Label
         HorizontalOptions="Center"
         Text="Hello World !"
-        TextColor="Black"
         VerticalOptions="Center" />
 </ContentPage>

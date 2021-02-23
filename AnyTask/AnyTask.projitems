@@ -15,6 +15,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\FirestoreView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
@@ -35,6 +39,10 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\DummyPage.xaml.cs">
       <DependentUpon>DummyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\FirestoreViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\FirestoreView.xaml.cs">
+      <DependentUpon>FirestoreView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

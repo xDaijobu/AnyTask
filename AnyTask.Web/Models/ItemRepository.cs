@@ -14,6 +14,7 @@ namespace AnyTask.Models
             Add(new Item { Id = Guid.NewGuid().ToString(), Text = "Item 1", Description = "This is an item description." });
             Add(new Item { Id = Guid.NewGuid().ToString(), Text = "Item 2", Description = "This is an item description." });
             Add(new Item { Id = Guid.NewGuid().ToString(), Text = "Item 3", Description = "This is an item description." });
+            Add(new Item { Id = Guid.NewGuid().ToString(), Text = "Item 4", Description = "This is an item description." });
         }
 
         public IEnumerable<Item> GetAll()

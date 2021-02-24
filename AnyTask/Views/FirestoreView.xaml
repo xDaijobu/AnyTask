@@ -9,10 +9,7 @@
         RowSpacing="10">
         <StackLayout Grid.Row="0">
             <Button Command="{Binding AddItemCommand}" Text="Add Item" />
-            <Button
-                Command="{Binding DeleteItemCommand}"
-                CommandParameter="1"
-                Text="Delete Item" />
+            <Button Command="{Binding DeleteItemsCommand}" Text="Delete Item" />
         </StackLayout>
         <CollectionView Grid.Row="1" ItemsSource="{Binding Items}">
             <CollectionView.ItemsLayout>

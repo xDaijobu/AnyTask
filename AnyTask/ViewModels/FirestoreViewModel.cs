@@ -17,7 +17,9 @@ namespace AnyTask.ViewModels
             set => SetProperty(ref items, value);
         }
 
-        public AsyncCommand AddItemCommand => new AsyncCommand(AddItemAsync);
+        public AsyncCommand AddItemCommand => new AsyncCommand(AddItemAsync, allowsMultipleExecutions: false);
+        public Command DeleteItemsCommand => new Command(() => Items?.Clear()
+);
         public Command DeleteItemCommand => new Command<string>(async (id) =>
         {
             await DeleteItemAsync(id);
@@ -34,8 +36,13 @@ namespace AnyTask.ViewModels
             });
         }
 
+        string? cris;
         private async Task AddItemAsync()
         {
+            string x = cris!;
+            System.Diagnostics.Debug.WriteLine(x);
+            System.Diagnostics.Debug.WriteLine("Fire !");
+
             string base64Guid = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
 
             var item = new Item()

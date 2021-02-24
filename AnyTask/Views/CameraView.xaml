@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="AnyTask.Views.CameraView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:AnyTask.ViewModels"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
+    <Grid RowDefinitions="*">
+
+        <xct:CameraView
+            x:Name="cameraView"
+            Grid.Row="0"
+            CameraOptions="Default"
+            CaptureMode="Photo"
+            OnAvailable="CameraView_OnAvailable">
+            <xct:CameraView.Behaviors>
+                <xct:EventToCommandBehavior Command="{Binding PhotoCapturedCommand}" EventName="MediaCaptured" />
+            </xct:CameraView.Behaviors>
+        </xct:CameraView>
+
+        <Button
+            Grid.Row="0"
+            Clicked="Button_Clicked"
+            HorizontalOptions="End"
+            Text="X"
+            VerticalOptions="Start" />
+        <Button
+            Grid.Row="0"
+            Command="{Binding ShutterCommand, Source={x:Reference cameraView}}"
+            HorizontalOptions="Center"
+            IsEnabled="{Binding CanTakePhoto}"
+            Text="Take photo"
+            VerticalOptions="End" />
+
+        <StackLayout Grid.Row="1">
+            <Button Clicked="SaveToGallery_Clicked" Text="Save To Gallery" />
+            <Label
+                BackgroundColor="AliceBlue"
+                FontSize="Small"
+                Text="{Binding LastSavedPhotoPath}"
+                TextColor="Black" />
+
+            <CollectionView
+                ItemSizingStrategy="MeasureFirstItem"
+                ItemsSource="{Binding Images}"
+                SelectedItem="{Binding SelectedImage}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="15" Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="{Binding Path}" TextColor="Black" />
+                            <Image
+                                Margin="10"
+                                Aspect="AspectFill"
+                                Source="{Binding Source}" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </Grid>
+
+</ContentPage>

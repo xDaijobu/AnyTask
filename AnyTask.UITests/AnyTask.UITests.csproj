@@ -31,7 +31,7 @@
     <PackageReference Include="NUnit" Version="3.13.1" />
     <PackageReference Include="Xamarin.UITest" Version="3.0.14" />
     <PackageReference Include="Xamarin.CommunityToolkit">
-      <Version>1.0.3</Version>
+      <Version>1.1.0-preview1019</Version>
     </PackageReference>
     <PackageReference Include="Plugin.CloudFirestore">
       <Version>4.1.0</Version>

@@ -11,5 +11,10 @@ namespace AnyTask.Views
         {
             InitializeComponent();
         }
+
+        async void Button_Clicked(System.Object sender, System.EventArgs e)
+        {
+            await Shell.Current.Navigation.PushModalAsync(new CameraView());
+        }
     }
 }

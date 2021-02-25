@@ -12,23 +12,28 @@ namespace AnyTask.Views
         {
             InitializeComponent();
 
-			BindingContext = new CameraViewModel();
-			//zoomLabel.Text = string.Format("Zoom: {0}", zoomSlider.Value);
-		}
+            BindingContext = new CameraViewModel();
+            //zoomLabel.Text = string.Format("Zoom: {0}", zoomSlider.Value);
+        }
 
-		void CameraView_OnAvailable(object sender, bool e)
-		{
-			(BindingContext as CameraViewModel).CanTakePhoto = e;
-		}
+        void CameraView_OnAvailable(object sender, bool e)
+        {
+            (BindingContext as CameraViewModel).CanTakePhoto = e;
+        }
 
         async void Button_Clicked(System.Object sender, System.EventArgs e)
         {
-			await Shell.Current.Navigation.PopModalAsync();
+            await Shell.Current.Navigation.PopModalAsync();
         }
 
         async void SaveToGallery_Clicked(System.Object sender, System.EventArgs e)
         {
-			await DisplayAlert("Fire ! ", "Save To Gallery", "ok");
+            await DisplayAlert("Fire ! ", "Save To Gallery", "ok");
+        }
+
+        async void CameraView_MediaCaptured(object sender, MediaCapturedEventArgs e)
+        {
+            await (BindingContext as CameraViewModel).PhotoCaptured(e);
         }
     }
 }

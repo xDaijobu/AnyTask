@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using AnyTask.Models;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Essentials;
@@ -15,9 +14,33 @@ using Image = AnyTask.Models.Image;
 namespace AnyTask.ViewModels
 {
     /*
-     * Fix camera media rotation android issue
-     * https://github.com/xamarin/XamarinCommunityToolkit/pull/886
+     * Camera View ( https://github.com/xamarin/XamarinCommunityToolkit/tree/main/src/CommunityToolkit/Xamarin.CommunityToolkit/Views/CameraView )
+     * Issues :
+     * 1. CapturePhoto yg ada di iOS belum jalan 
+     * 2. Performa nya lumayan berat ( saat pertama kali CameraView nya dibuka , harus menunggu bbrp detik utk bisa mengambil Foto )
      * 
+     * 
+     * Fix camera media rotation android issue ( ref : https://github.com/xamarin/XamarinCommunityToolkit/pull/886 )
+     * TODO : 
+     * 1. Rotation (90deg)
+     * 2. ReSize 
+     * 
+     * Solusi untuk Rotation & ReSize :
+     * - Bitmap adanya di SkiaSharp & Native masing2 platform
+     *      #Bitmap ( SkiaSharp ) | paling cocok diimplementasikan ke GeneralModul ( karena Camera adanya di GeneralModul jg )
+     *      Pros
+     *      - SkiaSharp bisa langsung dr Xamarin.Forms ( tnpa harus implement ke native ny lg )
+     *      - dengan 1 codingan / 1 source code / 1 file bisa diterapkan langsung ke semua project 
+     *      Cons
+     *      - kalau pakai SkiaSharp, maka harus add packageny dia yg lmyan gede yg otomatis hasil apk ny jg nambah
+     *      
+     *      #Bitmap ( Native )
+     *      Pros
+     *      - tdk perlu add package sprti SkiaSharp & hasil apk akan tetap sama 
+     *      - hasil yg diberikan mungkin lebih bagus ( dikarenakan pakai Engine nya langsung dari Native )
+     *      Cons
+     *      - harus diimplementasikan ke masing2 project Android nya ( DependencyInjection ) | Sa.To, HR.To, & app lain nya harus melakukan hal ini
+     *      - 1 codingan ( file nya jadi banyak ) tapi harus diimplementasikan ke banyak project
      */
     public class CameraViewModel : BaseViewModel
     {
@@ -57,7 +80,7 @@ namespace AnyTask.ViewModels
             Images = new ObservableCollection<Image>();
         }
 
-        private async Task PhotoCaptured(MediaCapturedEventArgs args)
+        public async Task PhotoCaptured(MediaCapturedEventArgs args)
         {
             System.Diagnostics.Debug.WriteLine(args);
             System.Diagnostics.Debug.WriteLine(args.ImageData.ToString());
@@ -107,9 +130,7 @@ namespace AnyTask.ViewModels
         {
             var status = await permission.CheckStatusAsync();
             if (status != PermissionStatus.Granted)
-            {
                 status = await permission.RequestAsync();
-            }
 
             return status;
         }
@@ -124,7 +145,8 @@ namespace AnyTask.ViewModels
                 {
                     Name = "hehe",
                     Path = path,
-                    Source = ImageSource.FromFile(path)
+                    Source = ImageSource.FromFile(path),
+                    Rotation = 90,
                 });
             }
         }

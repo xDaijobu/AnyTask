@@ -10,5 +10,6 @@
             VerticalOptions="Center" />
 
         <Button Clicked="Button_Clicked" Text="Photo" />
+        <Button Clicked="Button_ClickedXCT" Text="Photo XCT" />
     </StackLayout>
 </ContentPage>

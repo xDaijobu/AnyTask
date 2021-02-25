@@ -12,10 +12,11 @@
             Grid.Row="0"
             CameraOptions="Default"
             CaptureMode="Photo"
+            MediaCaptured="CameraView_MediaCaptured"
             OnAvailable="CameraView_OnAvailable">
-            <xct:CameraView.Behaviors>
+            <!--<xct:CameraView.Behaviors>
                 <xct:EventToCommandBehavior Command="{Binding PhotoCapturedCommand}" EventName="MediaCaptured" />
-            </xct:CameraView.Behaviors>
+            </xct:CameraView.Behaviors>-->
         </xct:CameraView>
 
         <Button
@@ -32,34 +33,46 @@
             Text="Take photo"
             VerticalOptions="End" />
 
-        <StackLayout Grid.Row="1">
-            <Button Clicked="SaveToGallery_Clicked" Text="Save To Gallery" />
-            <Label
-                BackgroundColor="AliceBlue"
-                FontSize="Small"
-                Text="{Binding LastSavedPhotoPath}"
-                TextColor="Black" />
+        <ScrollView Grid.Row="1">
+            <StackLayout>
+                <Button Clicked="SaveToGallery_Clicked" Text="Save To Gallery" />
+                <Label
+                    BackgroundColor="CadetBlue"
+                    FontSize="Small"
+                    Text="{Binding LastSavedPhotoPath}"
+                    TextColor="Black" />
 
-            <CollectionView
-                ItemSizingStrategy="MeasureFirstItem"
-                ItemsSource="{Binding Images}"
-                SelectedItem="{Binding SelectedImage}">
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout ItemSpacing="15" Orientation="Vertical" />
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout>
-                            <Label Text="{Binding Path}" TextColor="Black" />
-                            <Image
-                                Margin="10"
-                                Aspect="AspectFill"
-                                Source="{Binding Source}" />
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </StackLayout>
+                <CollectionView
+                    BackgroundColor="LightSkyBlue"
+                    ItemSizingStrategy="MeasureFirstItem"
+                    ItemsSource="{Binding Images}"
+                    SelectedItem="{Binding SelectedImage}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout
+                            HorizontalItemSpacing="5"
+                            Orientation="Vertical"
+                            Span="2"
+                            VerticalItemSpacing="5" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Vertical">
+                                <Label
+                                    FontSize="Micro"
+                                    Text="{Binding Path}"
+                                    TextColor="Black" />
+                                <Image
+                                    Aspect="AspectFill"
+                                    HeightRequest="100"
+                                    Rotation="{Binding Rotation}"
+                                    Source="{Binding Source}"
+                                    WidthRequest="100" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
     </Grid>
 
 </ContentPage>

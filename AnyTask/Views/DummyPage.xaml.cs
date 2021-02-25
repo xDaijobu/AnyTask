@@ -16,5 +16,10 @@ namespace AnyTask.Views
         {
             await Shell.Current.Navigation.PushModalAsync(new CameraView());
         }
+
+        async void Button_ClickedXCT(object sender, EventArgs e)
+        {
+            await Shell.Current.Navigation.PushAsync(new CameraXCTView());
+        }
     }
 }

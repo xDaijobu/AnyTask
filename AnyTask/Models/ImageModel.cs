@@ -8,5 +8,6 @@ namespace AnyTask.Models
         public string Name { get; set; }
         public string Path { get; set; }
         public ImageSource Source { get; set; }
+        public double Rotation { get; set; }
     }
 }

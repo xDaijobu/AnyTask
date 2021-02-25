@@ -23,6 +23,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\CameraXCTView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
@@ -53,6 +57,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CameraViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ImageModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\CameraXCTView.xaml.cs">
+      <DependentUpon>CameraXCTView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml">

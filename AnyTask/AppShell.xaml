@@ -46,6 +46,8 @@
         If you would like to navigate to this content you can do so by calling
         await Shell.Current.GoToAsync("//LoginPage");
     -->
+    <ShellContent ContentTemplate="{DataTemplate local:DummyPage}" Route="loading" />
+    <ShellContent ContentTemplate="{DataTemplate local:DummyPage}" Route="login" />
     <!--<TabBar>
         <ShellContent ContentTemplate="{DataTemplate local:DummyPage}" Route="LoginPage" />
     </TabBar>-->

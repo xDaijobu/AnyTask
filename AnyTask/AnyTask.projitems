@@ -44,10 +44,17 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\FirestoreView.xaml.cs">
       <DependentUpon>FirestoreView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Models\User.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAuth.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\AuthService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\AuthResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Interfaces\" />
   </ItemGroup>
 </Project>

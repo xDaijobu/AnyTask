@@ -7,6 +7,8 @@ using Xamarin.Forms;
 
 using AnyTask.Models;
 using AnyTask.Services;
+using System.Threading.Tasks;
+using Xamarin.CommunityToolkit.Extensions;
 
 namespace AnyTask.ViewModels
 {
@@ -26,6 +28,11 @@ namespace AnyTask.ViewModels
         {
             get { return title; }
             set { SetProperty(ref title, value); }
+        }
+
+        public async Task DisplayToastAsync(string text)
+        {
+            await Shell.Current.CurrentPage.DisplayToastAsync(text);
         }
 
         protected bool SetProperty<T>(ref T backingStore, T value,

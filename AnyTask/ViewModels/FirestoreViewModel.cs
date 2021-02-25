@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AnyTask.Models;
+using AnyTask.Services;
 using Plugin.CloudFirestore;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
@@ -18,12 +19,17 @@ namespace AnyTask.ViewModels
         }
 
         public AsyncCommand AddItemCommand => new AsyncCommand(AddItemAsync, allowsMultipleExecutions: false);
+        public AsyncCommand SignInCommand => new AsyncCommand(SignInAnonymously);
+        public AsyncCommand SignInWithEmailAndPasswordCommand => new AsyncCommand(SignInWithEmailAndPassword);
+        public AsyncCommand SignUpCommand => new AsyncCommand(SignUp);
+
         public Command DeleteItemsCommand => new Command(() => Items?.Clear()
 );
         public Command DeleteItemCommand => new Command<string>(async (id) =>
         {
             await DeleteItemAsync(id);
         });
+
         //public AsyncCommand GetItemsCommand => new AsyncCommand(GetItemsAsync);
 
         public FirestoreViewModel()
@@ -82,6 +88,28 @@ namespace AnyTask.ViewModels
             var items = document.ToObjects<Item>();
 
             Items.AddRange(items);
+        }
+
+        private AuthService authService = new AuthService();
+
+        private async Task SignInAnonymously()
+        {
+            var result = await authService.SignInAnonymously();
+            System.Diagnostics.Debug.WriteLine("Result : " + result);
+        }
+
+        private async Task SignUp()
+        {
+            var result = await authService.SignUp("christwurangian@gmail.com", "123456");
+
+            authService.CurrentUser();
+            System.Diagnostics.Debug.WriteLine("SignUp : " + result);
+        }
+
+        private async Task SignInWithEmailAndPassword()
+        {
+            var result = await authService.SignInWithEmailPassword("christwurangian@gmail.com", "123456");
+            await DisplayToastAsync("Uid : " + result.User.Uid);
         }
     }
 }

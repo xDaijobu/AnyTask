@@ -40,7 +40,7 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <SwipeView>
+                    <!--<SwipeView>
                         <SwipeView.RightItems>
                             <SwipeItems>
                                 <SwipeItem BackgroundColor="LightGreen" Text="Favorite" />
@@ -61,8 +61,17 @@
                                 <Label Text="{Binding Description}" />
                             </StackLayout>
                         </Frame>
-                    </SwipeView>
-
+                    </SwipeView>-->
+                    <Frame
+                        Padding="0"
+                        BackgroundColor="Salmon"
+                        CornerRadius="5">
+                        <StackLayout Margin="5" Orientation="Vertical">
+                            <Label Text="{Binding Id}" />
+                            <Label Text="{Binding Name}" />
+                            <Label Text="{Binding Description}" />
+                        </StackLayout>
+                    </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

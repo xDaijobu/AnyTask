@@ -29,26 +29,25 @@
     </Shell.Resources>
     <TabBar>
         <ShellContent
-            Title="About"
-            ContentTemplate="{DataTemplate local:AboutPage}"
+            Title="Tasks"
+            ContentTemplate="{DataTemplate local:TasksView}"
             Icon="icon_about.png"
             Route="AboutPage" />
         <ShellContent
-            Title="Browse"
+            Title="Calendar"
             ContentTemplate="{DataTemplate local:DummyPage}"
             Icon="icon_feed.png" />
         <ShellContent
             Title="Firestore"
             ContentTemplate="{DataTemplate local:FirestoreView}"
             Icon="icon_feed.png" />
+        <ShellContent
+            Title="Settings"
+            ContentTemplate="{DataTemplate local:SettingsView}"
+            Icon="icon_feed.png" />
     </TabBar>
-    <!--
-        If you would like to navigate to this content you can do so by calling
-        await Shell.Current.GoToAsync("//LoginPage");
-    -->
+
+
     <ShellContent ContentTemplate="{DataTemplate local:DummyPage}" Route="loading" />
     <ShellContent ContentTemplate="{DataTemplate local:DummyPage}" Route="login" />
-    <!--<TabBar>
-        <ShellContent ContentTemplate="{DataTemplate local:DummyPage}" Route="LoginPage" />
-    </TabBar>-->
 </Shell>

@@ -20,6 +20,7 @@ namespace AnyTask.Services
                 return "";
             }
         }
+
         public async Task<string> SignInAnonymously()
         {
             try

@@ -42,11 +42,11 @@ namespace AnyTask.ViewModels
             });
         }
 
-        string? cris;
+        //string? cris;
         private async Task AddItemAsync()
         {
-            string x = cris!;
-            System.Diagnostics.Debug.WriteLine(x);
+            //string x = cris!;
+            //System.Diagnostics.Debug.WriteLine(x);
             System.Diagnostics.Debug.WriteLine("Fire !");
 
             string base64Guid = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
